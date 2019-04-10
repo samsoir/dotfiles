@@ -11,13 +11,14 @@ The following applications have configurations in this project;
 - zsh
 - tmux
 - vim
+- git
 
 # How to install
 
 Clone this repository into your `$HOME` directory
 
 ```
-git clone <project>
+git clone https://github.com/samsoir/dotfiles.git ~/dotfiles 
 ```
 
 Then make the project
@@ -36,3 +37,14 @@ To clean up the dotfiles from your home directory
 ```
 make clean
 ```
+
+# Contributions
+
+Contributions are welcome. Please fork this repository and make your
+contributions there. When ready, create a Pull Request if you wish to
+integrate your changes into this repository.
+
+# LICENSE
+
+This project is licensed under the open source MIT License. See LICENSE file
+in this repository for terms.

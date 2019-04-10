@@ -1,0 +1,8 @@
+[user]
+	name = Sam de Freyssinet
+	email = sam@def.reyssi.net
+[alias]
+	ci = commit
+	co = checkout
+	br = branch
+	st = status

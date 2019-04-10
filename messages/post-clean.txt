@@ -1,0 +1,4 @@
+Custom dotfiles removed from home directory
+
+zsh and tmux will retain the previous configuration until reloaded
+

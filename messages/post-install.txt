@@ -1,0 +1,10 @@
+Dotfiles installed.
+
+zsh will require a restart, or reloading the config, e.g.
+
+  source ~/.zshrc
+
+tmux will require configuration to be reloaded, e.g.
+
+  tmux source-file ~/.tmux.conf
+
