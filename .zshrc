@@ -95,6 +95,10 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Golang
+# Autosuggestions
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Golang configuration -- created by golang install.sh
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin
