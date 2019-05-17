@@ -105,7 +105,10 @@ export PATH=$PATH:$GOROOT/bin
 eval $(op signin my)
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/usr/local/google-cloud-sdk/path.zsh.inc' ]; then . '/usr/local/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/home/sam.clark/google-cloud-sdk/path.zsh.inc' ]; then . '/home/sam.clark/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/usr/local/google-cloud-sdk/completion.zsh.inc' ]; then . '/usr/local/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/home/sam.clark/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/sam.clark/google-cloud-sdk/completion.zsh.inc'; fi
+
+# PIP
+export PATH=$PATH:$HOME/.local/bin
