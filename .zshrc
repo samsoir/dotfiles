@@ -99,3 +99,12 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # 1Password CLI
 # eval $(op signin my)
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/sdefreyssinet/google-cloud-sdk/path.zsh.inc' ]; then . '/home/sdefreyssinet/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/sdefreyssinet/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/sdefreyssinet/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Gemini API Key
+export GEMINI_API_KEY="AIzaSyBJ708eZyaieTMAv84vf4y_R0ID1qroeRc"
