@@ -10,3 +10,5 @@ tmux will require configuration to be reloaded, e.g.
 
 To install tmux plugins, start tmux and press: Ctrl-a + I
 
+To install Vim plugins, open vim and run: :PluginInstall
+
