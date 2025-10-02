@@ -19,16 +19,17 @@ A comprehensive dotfiles repository for quickly setting up a modern development 
 
 ## Quick Start
 
-Clone this repository:
+**One-command setup** - Copy and paste this single line:
+
+```bash
+git clone https://github.com/samsoir/dotfiles.git ~/dotfiles && cd ~/dotfiles && make install
+```
+
+Or step-by-step:
 
 ```bash
 git clone https://github.com/samsoir/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-```
-
-Run the automated installer:
-
-```bash
 make install
 ```
 
