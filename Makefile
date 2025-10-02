@@ -1,6 +1,6 @@
 DOTFILES_DIR    := $(shell pwd)
 DOTFILES_SEARCH := $(wildcard .??*)
-EXCLUSIONS      := .git .gitmodules .gitignore scripts
+EXCLUSIONS      := .git .gitmodules .gitignore scripts .gitconfig
 DOTFILES        := $(filter-out $(EXCLUSIONS), $(DOTFILES_SEARCH))
 
 .PHONY: install clean list reload zsh-plugins oh-my-zsh tpm vundle vim-colors system-deps help
@@ -108,11 +108,15 @@ vim-colors:
 install: zsh-plugins tpm vundle vim-colors
 	@echo "Installing dotfiles into home directory"
 	@$(foreach dtfile, $(DOTFILES), ln -sfn $(abspath $(dtfile)) $(HOME)/$(dtfile);)
+	@echo "Copying .gitconfig to $(HOME)"
+	@cp "$(DOTFILES_DIR)/.gitconfig" "$(HOME)/.gitconfig"
 	@"$(DOTFILES_DIR)/scripts/post-install.sh"
 
 clean:
 	@echo "Removing dotfiles from home directory"
 	@$(foreach dtfile, $(DOTFILES), rm -rf $(HOME)/$(dtfile);)
+	@echo "Removing copied .gitconfig"
+	@rm -f "$(HOME)/.gitconfig"
 	@cat "$(DOTFILES_DIR)/messages/post-clean.txt"
 
 list: 

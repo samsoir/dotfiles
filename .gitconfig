@@ -15,6 +15,3 @@
 	helper = !/usr/bin/gh auth git-credential
 [init]
 	default = main
-[user]
-	name = Sam de Freyssinet
-	email = sam@def.reyssi.net
