@@ -3,7 +3,7 @@ DOTFILES_SEARCH := $(wildcard .??*)
 EXCLUSIONS      := .git .gitmodules .gitignore
 DOTFILES        := $(filter-out $(EXCLUSIONS), $(DOTFILES_SEARCH))
 
-.PHONY: install clean list reload plugins oh-my-zsh
+.PHONY: install clean list reload zsh-plugins oh-my-zsh
 
 oh-my-zsh:
 	@if [ ! -d "${HOME}/.oh-my-zsh" ]; then \
@@ -13,7 +13,7 @@ oh-my-zsh:
 		echo "oh-my-zsh already installed"; \
 	fi
 
-plugins: oh-my-zsh
+zsh-plugins: oh-my-zsh
 	@echo "Installing oh-my-zsh plugins"
 	@mkdir -p ${HOME}/.oh-my-zsh/custom/plugins
 	@if [ ! -d "${HOME}/.oh-my-zsh/custom/plugins/zsh-completions" ]; then \
@@ -35,7 +35,7 @@ plugins: oh-my-zsh
 		echo "zsh-syntax-highlighting already installed"; \
 	fi
 
-install: plugins
+install: zsh-plugins
 	@echo "Installing dotfiles into home directory"
 	@$(foreach dtfile, $(DOTFILES), ln -sfn $(abspath $(dtfile)) $(HOME)/$(dtfile);)
 	@cat "$(DOTFILES_DIR)/messages/post-install.txt"
