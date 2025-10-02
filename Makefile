@@ -3,7 +3,24 @@ DOTFILES_SEARCH := $(wildcard .??*)
 EXCLUSIONS      := .git .gitmodules .gitignore scripts
 DOTFILES        := $(filter-out $(EXCLUSIONS), $(DOTFILES_SEARCH))
 
-.PHONY: install clean list reload zsh-plugins oh-my-zsh tpm vundle vim-colors system-deps
+.PHONY: install clean list reload zsh-plugins oh-my-zsh tpm vundle vim-colors system-deps help
+
+help: ## Show this help message
+	@echo "Dotfiles Management Commands:"
+	@echo ""
+	@echo "  make install      - Install all dotfiles and dependencies"
+	@echo "  make clean        - Remove dotfiles from home directory"
+	@echo "  make list         - List dotfiles that would be installed"
+	@echo ""
+	@echo "Individual Component Installation:"
+	@echo "  make system-deps  - Check/install system dependencies (git, zsh, vim, tmux, curl)"
+	@echo "  make oh-my-zsh    - Install Oh My Zsh framework"
+	@echo "  make zsh-plugins  - Install zsh plugins (completions, autosuggestions, syntax-highlighting)"
+	@echo "  make tpm          - Install Tmux Plugin Manager"
+	@echo "  make vundle       - Install Vundle (Vim Plugin Manager)"
+	@echo "  make vim-colors   - Install twilight256 vim color scheme"
+	@echo ""
+	@echo "For more information, see README.md"
 
 system-deps:
 	@echo "Checking system dependencies..."
