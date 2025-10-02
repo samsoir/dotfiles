@@ -3,9 +3,37 @@ DOTFILES_SEARCH := $(wildcard .??*)
 EXCLUSIONS      := .git .gitmodules .gitignore
 DOTFILES        := $(filter-out $(EXCLUSIONS), $(DOTFILES_SEARCH))
 
-.PHONY: install clean list reload zsh-plugins oh-my-zsh tpm
+.PHONY: install clean list reload zsh-plugins oh-my-zsh tpm vundle vim-colors system-deps
 
-oh-my-zsh:
+system-deps:
+	@echo "Checking system dependencies..."
+	@missing_deps=""; \
+	for dep in git zsh vim tmux curl; do \
+		if ! command -v $$dep >/dev/null 2>&1; then \
+			missing_deps="$$missing_deps $$dep"; \
+		fi; \
+	done; \
+	if [ -n "$$missing_deps" ]; then \
+		echo "Missing dependencies:$$missing_deps"; \
+		if command -v apt >/dev/null 2>&1; then \
+			echo "Install with: sudo apt install$$missing_deps"; \
+		elif command -v pacman >/dev/null 2>&1; then \
+			echo "Install with: sudo pacman -S$$missing_deps"; \
+		elif command -v yum >/dev/null 2>&1; then \
+			echo "Install with: sudo yum install$$missing_deps"; \
+		elif command -v dnf >/dev/null 2>&1; then \
+			echo "Install with: sudo dnf install$$missing_deps"; \
+		elif command -v brew >/dev/null 2>&1; then \
+			echo "Install with: brew install$$missing_deps"; \
+		else \
+			echo "Please install using your system's package manager."; \
+		fi; \
+		exit 1; \
+	else \
+		echo "All system dependencies are installed."; \
+	fi
+
+oh-my-zsh: system-deps
 	@if [ ! -d "${HOME}/.oh-my-zsh" ]; then \
 		echo "Installing oh-my-zsh..."; \
 		sh -c "$$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended; \
@@ -43,7 +71,24 @@ tpm:
 		echo "TPM already installed"; \
 	fi
 
-install: zsh-plugins tpm
+vundle:
+	@if [ ! -d "${HOME}/.vim/bundle/Vundle.vim" ]; then \
+		echo "Installing Vundle (Vim Plugin Manager)..."; \
+		git clone https://github.com/VundleVim/Vundle.vim.git ${HOME}/.vim/bundle/Vundle.vim; \
+	else \
+		echo "Vundle already installed"; \
+	fi
+
+vim-colors:
+	@if [ ! -f "${HOME}/.vim/colors/twilight256.vim" ]; then \
+		echo "Installing twilight256 color scheme..."; \
+		mkdir -p ${HOME}/.vim/colors; \
+		curl -fsSL https://raw.githubusercontent.com/vim-scripts/twilight256.vim/master/colors/twilight256.vim -o ${HOME}/.vim/colors/twilight256.vim; \
+	else \
+		echo "twilight256 color scheme already installed"; \
+	fi
+
+install: zsh-plugins tpm vundle vim-colors
 	@echo "Installing dotfiles into home directory"
 	@$(foreach dtfile, $(DOTFILES), ln -sfn $(abspath $(dtfile)) $(HOME)/$(dtfile);)
 	@cat "$(DOTFILES_DIR)/messages/post-install.txt"
