@@ -108,3 +108,5 @@ if [ -f '/home/sdefreyssinet/google-cloud-sdk/completion.zsh.inc' ]; then . '/ho
 
 # Gemini API Key
 export GEMINI_API_KEY="AIzaSyBJ708eZyaieTMAv84vf4y_R0ID1qroeRc"
+
+export PATH="$HOME/.local/bin:$PATH"
