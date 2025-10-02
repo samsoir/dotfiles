@@ -3,7 +3,7 @@ DOTFILES_SEARCH := $(wildcard .??*)
 EXCLUSIONS      := .git .gitmodules .gitignore
 DOTFILES        := $(filter-out $(EXCLUSIONS), $(DOTFILES_SEARCH))
 
-.PHONY: install clean list reload zsh-plugins oh-my-zsh
+.PHONY: install clean list reload zsh-plugins oh-my-zsh tpm
 
 oh-my-zsh:
 	@if [ ! -d "${HOME}/.oh-my-zsh" ]; then \
@@ -35,7 +35,15 @@ zsh-plugins: oh-my-zsh
 		echo "zsh-syntax-highlighting already installed"; \
 	fi
 
-install: zsh-plugins
+tpm:
+	@if [ ! -d "${HOME}/.tmux/plugins/tpm" ]; then \
+		echo "Installing TPM (Tmux Plugin Manager)..."; \
+		git clone https://github.com/tmux-plugins/tpm ${HOME}/.tmux/plugins/tpm; \
+	else \
+		echo "TPM already installed"; \
+	fi
+
+install: zsh-plugins tpm
 	@echo "Installing dotfiles into home directory"
 	@$(foreach dtfile, $(DOTFILES), ln -sfn $(abspath $(dtfile)) $(HOME)/$(dtfile);)
 	@cat "$(DOTFILES_DIR)/messages/post-install.txt"
