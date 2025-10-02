@@ -19,13 +19,29 @@ A comprehensive dotfiles repository for quickly setting up a modern development 
 
 ## Quick Start
 
-**One-command setup** - Copy and paste this single line:
+### Fresh System (no git installed)
+
+**Bootstrap installation** - For completely clean systems:
+
+Using curl:
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/samsoir/dotfiles/master/bootstrap.sh)
+```
+
+Using wget:
+```bash
+bash <(wget -qO- https://raw.githubusercontent.com/samsoir/dotfiles/master/bootstrap.sh)
+```
+
+### Existing System (git available)
+
+**One-command setup**:
 
 ```bash
 git clone https://github.com/samsoir/dotfiles.git ~/dotfiles && cd ~/dotfiles && make install
 ```
 
-Or step-by-step:
+**Step-by-step**:
 
 ```bash
 git clone https://github.com/samsoir/dotfiles.git ~/dotfiles
