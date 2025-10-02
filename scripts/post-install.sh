@@ -10,6 +10,27 @@ NC='\033[0m' # No Color
 # Success message
 echo -e "\n${GREEN}✓ Dotfiles installed successfully!${NC}\n"
 
+# Git configuration
+echo -e "${BLUE}═══════════════════════════════════════${NC}"
+echo -e "${BLUE}         GIT CONFIGURATION${NC}"
+echo -e "${BLUE}═══════════════════════════════════════${NC}\n"
+
+echo -e "${YELLOW}Please configure your git identity:${NC}\n"
+
+read -p "Enter your full name: " git_name
+read -p "Enter your email address: " git_email
+
+if [ -n "$git_name" ] && [ -n "$git_email" ]; then
+    git config --global user.name "$git_name"
+    git config --global user.email "$git_email"
+    echo -e "\n${GREEN}✓ Git configured with name: ${BOLD}$git_name${NC}"
+    echo -e "${GREEN}✓ Git configured with email: ${BOLD}$git_email${NC}\n"
+else
+    echo -e "\n${YELLOW}⚠ Skipped git configuration. You can configure it later with:${NC}"
+    echo -e "  ${BOLD}git config --global user.name \"Your Name\"${NC}"
+    echo -e "  ${BOLD}git config --global user.email \"your.email@example.com\"${NC}\n"
+fi
+
 # Section header
 echo -e "${BLUE}═══════════════════════════════════════${NC}"
 echo -e "${BLUE}            NEXT STEPS${NC}"
